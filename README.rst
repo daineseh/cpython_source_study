@@ -263,3 +263,9 @@ so it may be used in proprietary projects.  There are interfaces to some GNU
 code but these are entirely optional.
 
 All trademarks referenced herein are property of their respective holders.
+
+
+Build CPython on Windows
+------------------------
+
+Reference `Build CPython on Windows <https://cpython-core-tutorial.readthedocs.io/en/latest/build_cpython_windows.html>`_
