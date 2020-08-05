@@ -1409,6 +1409,7 @@ PyImport_ImportFrozenModule(const char *name)
 PyObject *
 PyImport_ImportModule(const char *name)
 {
+    printf("[PyImport_ImportModule] name: %s\n", name);
     PyObject *pname;
     PyObject *result;
 

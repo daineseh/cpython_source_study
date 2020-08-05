@@ -494,30 +494,39 @@ error:
 static int
 pymain_run_stdin(PyConfig *config, PyCompilerFlags *cf)
 {
+    printf("222222222221\n");
     if (stdin_is_interactive(config)) {
         config->inspect = 0;
         Py_InspectFlag = 0; /* do exit on SystemExit */
 
         int exitcode;
+        printf("222222222222\n");
         if (pymain_run_startup(config, cf, &exitcode)) {
             return exitcode;
         }
 
+        printf("222222222223\n");
         if (pymain_run_interactive_hook(&exitcode)) {
             return exitcode;
         }
     }
 
     /* call pending calls like signal handlers (SIGINT) */
+    printf("222222222224\n");
     if (Py_MakePendingCalls() == -1) {
+        printf("222222222225\n");
         return pymain_exit_err_print();
     }
 
+    printf("222222222226\n");
     if (PySys_Audit("cpython.run_stdin", NULL) < 0) {
+        printf("222222222227\n");
         return pymain_exit_err_print();
     }
 
+    printf("222222222228\n");
     int run = PyRun_AnyFileExFlags(stdin, "<stdin>", 0, cf);
+    printf("222222222229\n");
     return (run != 0);
 }
 
@@ -592,24 +601,32 @@ pymain_run_python(int *exitcode)
 
     pymain_header(config);
     pymain_import_readline(config);
+    printf("11111111111111111111111111111111111111\n");
 
     if (config->run_command) {
+        printf("11111111111111111111111111111111111112\n");
         *exitcode = pymain_run_command(config->run_command, &cf);
     }
     else if (config->run_module) {
+        printf("11111111111111111111111111111111111113\n");
         *exitcode = pymain_run_module(config->run_module, 1);
     }
     else if (main_importer_path != NULL) {
+        printf("11111111111111111111111111111111111114\n");
         *exitcode = pymain_run_module(L"__main__", 0);
     }
     else if (config->run_filename != NULL) {
+        printf("11111111111111111111111111111111111115\n");
         *exitcode = pymain_run_file(config, &cf);
     }
     else {
+        printf("11111111111111111111111111111111111116\n");
         *exitcode = pymain_run_stdin(config, &cf);
     }
 
+    printf("11111111111111111111111111111111111117\n");
     pymain_repl(config, &cf, exitcode);
+    printf("11111111111111111111111111111111111118\n");
     goto done;
 
 error:
