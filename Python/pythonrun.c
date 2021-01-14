@@ -94,6 +94,7 @@ PyRun_AnyFileExFlags(FILE *fp, const char *filename, int closeit,
 int
 PyRun_InteractiveLoopFlags(FILE *fp, const char *filename_str, PyCompilerFlags *flags)
 {
+    printf("The entry function of the interpreter - [PyRun_InteractiveLoopFlags]\n");
     PyObject *filename, *v;
     int ret, err;
     PyCompilerFlags local_flags = _PyCompilerFlags_INIT;
@@ -113,7 +114,7 @@ PyRun_InteractiveLoopFlags(FILE *fp, const char *filename_str, PyCompilerFlags *
     }
     v = _PySys_GetObjectId(&PyId_ps1);
     if (v == NULL) {
-        _PySys_SetObjectId(&PyId_ps1, v = PyUnicode_FromString(">>> "));
+        _PySys_SetObjectId(&PyId_ps1, v = PyUnicode_FromString("cpython$ "));
         Py_XDECREF(v);
     }
     v = _PySys_GetObjectId(&PyId_ps2);
